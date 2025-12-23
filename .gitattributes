@@ -1,0 +1,2 @@
+src/assets/java/elk-server-linux filter=lfs diff=lfs merge=lfs -text
+src/assets/java/elk-server-win.exe filter=lfs diff=lfs merge=lfs -text
