@@ -2,7 +2,7 @@
   "name": "java-elk-extension",
   "displayName": "java-elk-extension",
   "description": "",
-  "publisher": "huawei-cloud",
+  "publisher": "hakan",
   "version": "0.0.1",
   "engines": {
     "vscode": "^1.45.0"
