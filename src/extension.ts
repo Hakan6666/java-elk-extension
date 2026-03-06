@@ -6,9 +6,36 @@ import { spawn } from "child_process";
 
 export function activate(context: vscode.ExtensionContext) {
   const disposable = vscode.commands.registerCommand("PyPTO.elkLayout", async (id: string, data: any, command: string) => {
-    const isUnix = os.platform() === "linux" || os.platform() === "darwin";
-    const elkServerName = isUnix ? "elk-server-linux" : "elk-server-win.exe";
-    const elkServerPath = path.join(context.extensionPath, "dist", "src", "assets", "java", elkServerName);
+    const platform = os.platform();
+    const arch = os.arch();
+    let elkServerName = "";
+
+    if (platform === "win32") {
+      elkServerName = "elk-server-win.exe";
+    }
+    else if (platform === "linux") {
+      console.log("linux")
+      if (arch === "arm64" || arch === "arm") {
+        console.log("arm arch")
+        elkServerName = "elk-server-linux-arch";
+      } else {
+        elkServerName = "elk-server-linux";
+      }
+    }
+    else if (platform === "darwin") {
+      elkServerName = "elk-server-linux";
+    }
+
+    const isUnix = platform === "linux" || platform === "darwin";
+
+    const elkServerPath = path.join(
+      context.extensionPath,
+      "dist",
+      "src",
+      "assets",
+      "java",
+      elkServerName
+    );
 
     if (isUnix) {
       try {
@@ -63,4 +90,4 @@ export function activate(context: vscode.ExtensionContext) {
   context.subscriptions.push(disposable);
 }
 
-export function deactivate() {}
+export function deactivate() { }

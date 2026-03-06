@@ -38,6 +38,11 @@ module.exports = {
           to: "src/assets/java/elk-server-linux",
           toType: "file",
         },
+        {
+          from: "src/assets/java/elk-server-linux-arch",
+          to: "src/assets/java/elk-server-linux-arch",
+          toType: "file",
+        },
       ],
     }),
   ],
